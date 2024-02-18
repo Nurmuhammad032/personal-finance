@@ -2,6 +2,7 @@
   "name": "personal-finance",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -11,17 +12,21 @@
     "prepare": "husky"
   },
   "dependencies": {
+    "@iconify/react": "^4.1.1",
     "@types/node": "^20.11.19",
     "eslint-plugin-import": "^2.29.1",
     "husky": "^9.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.22.1",
     "styled-components": "^6.1.8",
+    "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.23.9",
     "@babel/preset-react": "^7.23.3",
+    "@babel/preset-typescript": "^7.23.3",
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
     "@types/jest": "^29.5.12",
