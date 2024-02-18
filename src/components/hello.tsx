@@ -1,4 +1,6 @@
+const varr = ''
+//
 const Hello = () => {
-  return <div>Hello</div>;
-};
-export default Hello;
+  return <div>Hello emas `</div>
+}
+export default Hello
