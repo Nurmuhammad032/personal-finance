@@ -1,5 +1,3 @@
-const varr = ''
-//
 const Hello = () => {
   return <div>Hello emas `</div>
 }
