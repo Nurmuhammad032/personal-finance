@@ -1,5 +1,5 @@
-import { color, font } from '@/shared/utils/styles';
-import { createGlobalStyle } from 'styled-components';
+import { font } from '@/shared/utils/styles'
+import { createGlobalStyle } from 'styled-components'
 
 export default createGlobalStyle`
   html, body, #root {
@@ -9,8 +9,8 @@ export default createGlobalStyle`
   }
   
   body {
-    color: ${color.textDarkest};
-    background-color: ${color.backgroundLight};
+    color: ${({ theme }) => theme.foreground};
+    background-color: ${({ theme }) => theme.background};
     ${font.size(16)}
     ${font.regular}
   }
@@ -36,6 +36,7 @@ export default createGlobalStyle`
   button {
     background: none;
     border: none;
+    cursor: pointer;
   }
 
   [role="button"], button, input, select, textarea {
@@ -47,4 +48,4 @@ export default createGlobalStyle`
       opacity: 1;
     }
   }
-`;
+`
