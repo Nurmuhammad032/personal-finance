@@ -1,4 +1,4 @@
-import { css } from 'styled-components';
+import { css } from 'styled-components'
 
 export const color = {
   primary: '#221ECC', // Blue
@@ -22,12 +22,12 @@ export const color = {
   borderLightest: '#dfe1e6',
   borderLight: '#C1C7D0',
   borderInputFocus: '#4c9aff'
-};
+}
 
 export const sizes = {
   sideBarWidth: 230,
   containerWidth: 1200
-};
+}
 
 export const font = {
   regular: 'font-family: "Poppins-Regular"; font-weight: normal;',
@@ -35,7 +35,7 @@ export const font = {
   bold: 'font-family: "Poppins-Bold"; font-weight: normal;',
   semiBold: 'font-family: "Poppins-SemiBold"; font-weight: normal;',
   size: (size: number) => `font-size: ${size}px;`
-};
+}
 
 export const mixin = {
   scrollableY: css`
@@ -58,5 +58,10 @@ export const mixin = {
   clickable: css`
     cursor: pointer;
     user-select: none;
+  `,
+  center: css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `
-};
+}

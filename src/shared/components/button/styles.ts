@@ -5,11 +5,19 @@ const buttonVariants = {
   default: css`
     background-color: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.primaryForeground};
+    &:hover {
+      opacity: 0.9;
+    }
   `,
   outline: css`
     background-color: transparent;
     border: 1px solid ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.foreground};
+    color: ${({ theme }) => theme.primary};
+
+    &:hover {
+      background-color: ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.primaryForeground};
+    }
   `,
   ghost: css`
     background-color: transparent;
@@ -22,7 +30,8 @@ const buttonVariants = {
 
 // Styled Button component
 export const StyledButton = styled.button<ButtonProps>`
-  padding: 0.5rem 2rem;
+  padding: 0.7rem 2rem;
+  position: relative;
   border-radius: 4px;
   cursor: pointer;
   display: inline-flex;
@@ -31,11 +40,11 @@ export const StyledButton = styled.button<ButtonProps>`
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
-  ${({ variant = 'default' }) => buttonVariants[variant]};
+  ${({ $variant = 'default' }) => buttonVariants[$variant]};
   ${({ disabled }) =>
     disabled &&
     css`
       opacity: 0.5 !important;
       cursor: not-allowed;
-    `};
+    `}
 `

@@ -1,18 +1,27 @@
+import { device } from '@/app/theme/media'
 import { color, font, mixin, sizes } from '@/shared/utils/styles'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const Sidebar = styled.div`
+export const Sidebar = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   left: 0;
   top: 0;
   width: ${sizes.sideBarWidth}px;
   padding: 0 16px 24px;
   background-color: ${({ theme }) => theme.cardBackground};
-  ${mixin.scrollableY};
+  overflow-x: visible !important;
   ${mixin.customScrollbar()}
   height: 100vh;
   border-right: 1px solid;
   border-color: ${({ theme }) => theme.border};
+  transition: left 0.3s ease;
+  @media ${device.lg} {
+    ${({ $isOpen }) =>
+      !$isOpen &&
+      css`
+        left: -${sizes.sideBarWidth}px;
+      `}
+  }
 `
 
 export const ProjectInfo = styled.div`
@@ -59,4 +68,23 @@ export const LinkText = styled.p`
 export const ProjectDescription = styled.p`
   ${font.size(10)}
   color: ${color.textMedium};
+`
+
+export const CloseIconWrapper = styled.div`
+  position: absolute;
+  right: -1.5rem;
+  background-color: ${({ theme }) => theme.cardBackground};
+  cursor: pointer;
+  z-index: 50000000000000;
+  top: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border: 1px solid ${({ theme }) => theme.border};
+  ${mixin.center}
+  border-radius: 50%;
+  display: none;
+
+  @media ${device.lg} {
+    display: flex;
+  }
 `

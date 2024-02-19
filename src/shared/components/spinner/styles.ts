@@ -2,12 +2,14 @@ import styled from 'styled-components'
 
 export const StyledSpinner = styled.svg`
   animation: rotate 2s linear infinite;
-  margin: -25px 0 0 -25px;
-  width: 25px;
-  height: 25px;
+  position: relative;
+  margin-right: 12px;
+  z-index: 10;
+  width: 20px;
+  height: 19px;
 
   & .path {
-    stroke: ${({ theme }) => theme.primary};
+    stroke: #ffffff;
     stroke-linecap: round;
     animation: dash 1.5s ease-in-out infinite;
   }

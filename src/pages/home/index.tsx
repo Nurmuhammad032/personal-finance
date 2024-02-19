@@ -1,4 +1,13 @@
+import FormDemo from '@/shared/components/form/form-demo'
+import TableDemo from './table-demo'
+
 const Home = () => {
-  return <div>Home</div>
+  return (
+    <div>
+      <FormDemo />
+
+      <TableDemo />
+    </div>
+  )
 }
 export default Home

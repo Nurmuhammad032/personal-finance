@@ -7,4 +7,5 @@ const Spinner = () => {
     </StyledSpinner>
   )
 }
+
 export default Spinner
