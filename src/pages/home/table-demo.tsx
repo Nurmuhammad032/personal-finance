@@ -43,18 +43,12 @@ export type Payment = {
 
 const columns: ColumnDef<Payment>[] = [
   {
-    id: 'select',
-    header: 'select',
-    enableSorting: false,
-    enableHiding: false
-  },
-  {
     accessorKey: 'status',
     header: 'Status'
   },
   {
     accessorKey: 'email',
-    header: 'header'
+    header: 'Email'
   },
   {
     accessorKey: 'amount',
@@ -63,7 +57,7 @@ const columns: ColumnDef<Payment>[] = [
   {
     id: 'actions',
     enableHiding: false,
-    header: 'header'
+    header: 'Actions'
   }
 ]
 

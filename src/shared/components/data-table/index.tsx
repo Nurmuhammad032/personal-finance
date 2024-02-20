@@ -1,3 +1,4 @@
+// ** Tanstack Table Imports
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -7,17 +8,15 @@ import {
   getSortedRowModel,
   useReactTable
 } from '@tanstack/react-table'
+
+// ** React Imports
 import { useState } from 'react'
 
-// import {
-//   Table,
-//   TableBody,
-//   TableCell,
-//   TableHead,
-//   TableHeader,
-//   TableRow,
-// } from "@/components/ui/table";
+// ** Skeleton Imports
 import Skeleton from 'react-loading-skeleton'
+
+// ** Custom Component Imports
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './table-components'
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
@@ -44,61 +43,59 @@ export function DataTable<TData, TValue>({ columns, data, isLoading, error }: Da
   })
 
   return (
-    <div className="relative rounded-md">
-      <table className="border-none">
-        <thead>
-          {table.getHeaderGroups().map(headerGroup => (
-            <tr key={headerGroup.id}>
-              {headerGroup.headers.map(header => {
-                return (
-                  <th key={header.id} className="bg-background text-muted-foreground">
-                    {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                  </th>
-                )
-              })}
-            </tr>
-          ))}
-        </thead>
-        <tbody>
-          {isLoading ? (
-            new Array(8).fill(undefined).map((_, i) => (
-              <tr key={i} className="text-base font-semibold">
-                {columns.map((_, i) => (
-                  <td key={i}>
-                    <Skeleton
-                      height={5}
-                      borderRadius={12}
-                      style={{
-                        width: Math.floor(Math.random() * (150 - 80 + 1)) + 80 + 'px'
-                      }}
-                    />
-                  </td>
-                ))}
-              </tr>
-            ))
-          ) : error ? (
-            <tr>
-              <td colSpan={columns.length} className="h-24 text-center text-destructive">
-                {error.message}
-              </td>
-            </tr>
-          ) : table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map(row => (
-              <tr key={row.id} data-state={row.getIsSelected() && 'selected'} className="text-base font-semibold">
-                {row.getVisibleCells().map(cell => (
-                  <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
-                ))}
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan={columns.length} className="h-24 text-center">
-                No results.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
+    <Table>
+      <TableHeader>
+        {table.getHeaderGroups().map(headerGroup => (
+          <TableRow key={headerGroup.id}>
+            {headerGroup.headers.map(header => {
+              return (
+                <TableHead key={header.id} className="bg-background text-muted-foreground">
+                  {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
+                </TableHead>
+              )
+            })}
+          </TableRow>
+        ))}
+      </TableHeader>
+      <TableBody>
+        {isLoading ? (
+          new Array(8).fill(undefined).map((_, i) => (
+            <TableRow key={i} className="text-base font-semibold">
+              {columns.map((_, i) => (
+                <TableCell key={i}>
+                  <Skeleton
+                    height={5}
+                    borderRadius={12}
+                    style={{
+                      width: Math.floor(Math.random() * (150 - 80 + 1)) + 80 + 'px'
+                    }}
+                  />
+                </TableCell>
+              ))}
+            </TableRow>
+          ))
+        ) : error ? (
+          <TableRow>
+            <TableCell colSpan={columns.length} className="h-24 text-center text-destructive">
+              {error.message}
+            </TableCell>
+          </TableRow>
+        ) : table.getRowModel().rows?.length ? (
+          table.getRowModel().rows.map(row => (
+            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className="text-base font-semibold">
+              {row.getVisibleCells().map(cell => (
+                <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
+              ))}
+            </TableRow>
+          ))
+        ) : (
+          <TableRow>
+            <TableCell colSpan={columns.length} className="h-24 text-center">
+              No results.
+            </TableCell>
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
   )
 }
