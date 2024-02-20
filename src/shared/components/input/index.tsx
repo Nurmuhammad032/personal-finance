@@ -23,7 +23,16 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ type, icon, ...props }
     )
   }
 
-  return <StyledInput type={type} ref={ref} {...props} />
+  return (
+    <StyledInput
+      style={{
+        justifyContent: 'center'
+      }}
+      type={type}
+      ref={ref}
+      {...props}
+    />
+  )
 })
 
 Input.displayName = 'Input'

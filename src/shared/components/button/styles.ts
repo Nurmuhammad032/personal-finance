@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import { ButtonProps } from './types'
+import { font } from '@/shared/utils/styles'
 
 const buttonVariants = {
   default: css`
@@ -28,13 +29,13 @@ const buttonVariants = {
   `
 }
 
-// Styled Button component
 export const StyledButton = styled.button<ButtonProps>`
-  padding: 0.7rem 2rem;
+  padding: 0.6rem 2rem;
   position: relative;
   border-radius: 4px;
   cursor: pointer;
   display: inline-flex;
+  ${font.size(16)}
   justify-content: center;
   align-items: center;
   transition:
@@ -46,5 +47,10 @@ export const StyledButton = styled.button<ButtonProps>`
     css`
       opacity: 0.5 !important;
       cursor: not-allowed;
+    `}
+  ${({ $fullWidth }) =>
+    $fullWidth &&
+    css`
+      width: 100%;
     `}
 `

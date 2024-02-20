@@ -4,9 +4,9 @@ import { StyledButton } from './styles'
 import { ButtonProps } from './types'
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ $variant = 'default', children, isLoading = false, ...props }, ref) => {
+  ({ $variant = 'default', children, isLoading = false, $fullWidth = false, ...props }, ref) => {
     return (
-      <StyledButton ref={ref} $variant={$variant} {...props}>
+      <StyledButton ref={ref} $variant={$variant} $fullWidth={$fullWidth} {...props}>
         {isLoading && <Spinner />}
         {children}
       </StyledButton>

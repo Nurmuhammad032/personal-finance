@@ -12,3 +12,7 @@ export const StyledLabel = styled.label<{ $isError: boolean }>`
       color: ${({ theme }) => theme.destructive};
     `}
 `
+
+export const StyledRequiredSign = styled.span`
+  color: ${({ theme }) => theme.destructive};
+`

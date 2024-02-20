@@ -5,8 +5,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import Input from '../input'
 
 export const formSchema = z.object({
-  name: z.string().min(2).max(20),
-  message: z.string().min(2).max(500)
+  name: z.string().min(2).max(20)
 })
 
 export type IForm = z.infer<typeof formSchema>
@@ -15,8 +14,7 @@ const FormDemo = () => {
   const form = useForm<IForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: '',
-      message: ''
+      name: ''
     }
   })
 
@@ -41,6 +39,7 @@ const FormDemo = () => {
               </FormItem>
             )}
           />
+          <button type="submit">submit</button>
         </form>
       </Form>
     </div>

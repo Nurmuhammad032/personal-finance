@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Slot } from '@radix-ui/react-slot'
 import { Controller, ControllerProps, FieldPath, FieldValues, FormProvider, useFormContext } from 'react-hook-form'
 import Label from '../label'
-import { StyledFormMessage } from './styles'
+import { StyledFormDescription, StyledFormMessage } from './styles'
 
 const Form = FormProvider
 
@@ -57,26 +57,32 @@ type FormItemContextValue = {
 
 const FormItemContext = React.createContext<FormItemContextValue>({} as FormItemContextValue)
 
-const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => {
-    const id = React.useId()
+const FormItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(({ ...props }, ref) => {
+  const id = React.useId()
 
-    return (
-      <FormItemContext.Provider value={{ id }}>
-        <div ref={ref} className={className} {...props} />
-      </FormItemContext.Provider>
-    )
-  }
-)
+  return (
+    <FormItemContext.Provider value={{ id }}>
+      <div
+        ref={ref}
+        style={{
+          width: '100%'
+        }}
+        {...props}
+      />
+    </FormItemContext.Provider>
+  )
+})
+
 FormItem.displayName = 'FormItem'
 
-const FormLabel = React.forwardRef<HTMLLabelElement, React.LabelHTMLAttributes<HTMLLabelElement>>(
-  ({ ...props }, ref) => {
-    const { error, formItemId } = useFormField()
+const FormLabel = React.forwardRef<
+  HTMLLabelElement,
+  React.LabelHTMLAttributes<HTMLLabelElement> & { required?: boolean }
+>(({ required = true, ...props }, ref) => {
+  const { error, formItemId } = useFormField()
 
-    return <Label isError={!!error} ref={ref} htmlFor={formItemId} {...props} />
-  }
-)
+  return <Label required={required} isError={!!error} ref={ref} htmlFor={formItemId} {...props} />
+})
 FormLabel.displayName = 'FormLabel'
 
 const FormControl = React.forwardRef<React.ElementRef<typeof Slot>, React.ComponentPropsWithoutRef<typeof Slot>>(
@@ -97,13 +103,13 @@ const FormControl = React.forwardRef<React.ElementRef<typeof Slot>, React.Compon
 FormControl.displayName = 'FormControl'
 
 const FormDescription = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
-  ({ className, ...props }, ref) => {
+  ({ ...props }, ref) => {
     const { formDescriptionId } = useFormField()
 
-    // return <p ref={ref} id={formDescriptionId} className={cn('text-sm text-muted-foreground', className)} {...props} />
-    return <p ref={ref} id={formDescriptionId} className={className} {...props} />
+    return <StyledFormDescription ref={ref} id={formDescriptionId} {...props} />
   }
 )
+
 FormDescription.displayName = 'FormDescription'
 
 const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<HTMLParagraphElement>>(
@@ -115,7 +121,6 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
       return null
     }
 
-    // <p ref={ref} id={formMessageId} className={cn('text-sm font-normal text-destructive', className)} {...props}>
     return (
       <StyledFormMessage ref={ref} id={formMessageId} {...props}>
         {body}
@@ -123,6 +128,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
     )
   }
 )
+
 FormMessage.displayName = 'FormMessage'
 
 export { useFormField, Form, FormItem, FormLabel, FormControl, FormDescription, FormMessage, FormField }

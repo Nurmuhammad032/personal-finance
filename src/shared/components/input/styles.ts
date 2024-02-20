@@ -2,11 +2,15 @@ import styled, { css } from 'styled-components'
 
 export const StyledInput = styled.input<{ $isIcon?: boolean }>`
   width: 100%;
-  border: 1px solid ${({ theme }) => theme.input};
+  border: 2px solid ${({ theme }) => theme.input};
   padding: 10px 12px;
   background-color: transparent;
   border-radius: 9px;
   color: ${({ theme }) => theme.foreground};
+  transition: border-color 0.2s ease;
+  &:focus {
+    border-color: ${({ theme }) => theme.primary};
+  }
 
   ${({ disabled }) =>
     disabled &&

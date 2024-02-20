@@ -37,11 +37,20 @@ export const font = {
   size: (size: number) => `font-size: ${size}px;`
 }
 
+export const zIndexValues = {
+  modal: 1000,
+  dropdown: 101,
+  sidebar: 100
+}
+
 export const mixin = {
   scrollableY: css`
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+  `,
+  boxShadowMedium: css`
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.1);
   `,
   customScrollbar: ({ width = 8, background = color.backgroundMedium } = {}) => css`
     &::-webkit-scrollbar {

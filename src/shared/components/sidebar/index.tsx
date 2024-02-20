@@ -1,5 +1,5 @@
 // ** Import Constants
-import { navLinks } from '@/shared/constants/navLinks'
+import { navLinks } from '@/shared/constants/nav-links'
 
 // ** Import Icon
 import Icon from '@/shared/components/icon/index'
