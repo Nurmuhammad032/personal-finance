@@ -1,4 +1,4 @@
 const Outcome = () => {
-  return <div>Outcome</div>
+  return <div>Outcome form</div>
 }
 export default Outcome

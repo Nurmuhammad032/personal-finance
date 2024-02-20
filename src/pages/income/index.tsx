@@ -1,40 +1,74 @@
+// ** Query Import
+import { useIncome } from '@/app/requests/queries/income-queries'
+
+// Custom Component Imports
 import Breadcrumbs from '@/shared/components/breadcrumbs'
+import { DataTable } from '@/shared/components/data-table'
 import { StyledPaper } from '@/shared/components/paper'
 import { StyledSectionHeading } from '@/shared/components/typography/section-heading'
 import { StyledSubtitle } from '@/shared/components/typography/subtitle'
 import { StyledTitle } from '@/shared/components/typography/title'
-import { StyledFormWrapper } from './style'
-import { RecordSchema, incomeRecordSchema } from './form-schema'
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage
-} from '@/shared/components/form'
-import Input from '@/shared/components/input'
+import { StyledHeaderWrapper } from '@/shared/components/header-wrapper'
 import { FlexBox } from '@/shared/components/flex-box'
-import Textarea from '@/shared/components/textarea'
 import Button from '@/shared/components/button'
+import { Dropdown, DropdownContent, DropdownMenuItem, DropdownTrigger } from '@/shared/components/dropdown'
+
+// ** Column Import
+import { incomeColumns } from './income-columns'
+
+// ** Icon Import
+import Icon from '@/shared/components/icon'
+
+// ** React Table Import
+import { ColumnDef } from '@tanstack/react-table'
+
+// ** Type Imports
+import { Income as IncomeType } from '@/app/requests/types/income'
+
+// ** Mutation Imports
+import { useIncomeDelete } from '@/app/requests/mutations/income-mutations'
+
+// ** Router Imports
+import { useNavigate } from 'react-router-dom'
 
 const Income = () => {
-  const form = useForm<RecordSchema>({
-    resolver: zodResolver(incomeRecordSchema),
-    defaultValues: {
-      amount: '',
-      date: new Date().toISOString().split('T')[0],
-      notes: '',
-      source: ''
-    }
-  })
+  // ** Navigation
+  const naviate = useNavigate()
 
-  function onSubmit(values: RecordSchema) {
-    console.log(values)
-  }
+  // ** Query
+  const { data: income, isLoading, error } = useIncome()
+  const { mutateAsync: deleteIncome } = useIncomeDelete()
+
+  const incomeColumnsWithAction: ColumnDef<IncomeType>[] = [
+    ...incomeColumns,
+    {
+      id: 'actions',
+      header: 'Actions',
+      cell: ({ row: { original: income } }) => {
+        return (
+          <Dropdown>
+            <DropdownTrigger>
+              <Icon icon="tabler:dots" cursor={'pointer'} />
+            </DropdownTrigger>
+            <DropdownContent>
+              <DropdownMenuItem onClick={() => naviate(`${income.id}/view`)}>
+                <Icon icon="tabler:eye" />
+                <span>View</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => deleteIncome(income.id)}>
+                <Icon icon="tabler:trash" />
+                <span>Delete</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => naviate(income.id)}>
+                <Icon icon="tabler:pencil" />
+                <span>Edit</span>
+              </DropdownMenuItem>
+            </DropdownContent>
+          </Dropdown>
+        )
+      }
+    }
+  ]
 
   return (
     <section>
@@ -44,77 +78,19 @@ const Income = () => {
         <StyledSubtitle>Keep track of your income</StyledSubtitle>
       </div>
       <StyledPaper>
-        <StyledFormWrapper>
-          <div>
-            <StyledTitle>Add your income</StyledTitle>
-            <StyledSubtitle $fontSize={13}>Enter your income details below:</StyledSubtitle>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)}>
-                <FlexBox $flexDir="column" $alignItems="center" $gap="1rem" $maxWidth="1000px" $margin="1rem 0">
-                  <FormField
-                    control={form.control}
-                    name="source"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Income source</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Source" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          Please enter the source of your income (e.g., Salary, Freelance Work, Dividends).
-                        </FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="amount"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Amount</FormLabel>
-                        <FormControl>
-                          <Input type="number" placeholder="Amount" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="date"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel required={false}>Date</FormLabel>
-                        <FormControl>
-                          <Input type="date" placeholder="Source" {...field} />
-                        </FormControl>
-                        <FormDescription>If left the field, today's date will be saved.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="notes"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel required={false}>Notes</FormLabel>
-                        <FormControl>
-                          <Textarea placeholder="Notes..." {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button $fullWidth type="submit">
-                    Submit
-                  </Button>
-                </FlexBox>
-              </form>
-            </Form>
-          </div>
-        </StyledFormWrapper>
+        <StyledHeaderWrapper>
+          <FlexBox $alignItems="center" $justifyContent="space-between">
+            <div>
+              <StyledTitle>Income Records</StyledTitle>
+              <StyledSubtitle>View and Manage Your Income</StyledSubtitle>
+            </div>
+            <Button onClick={() => naviate('add')}>
+              <Icon icon="tabler:plus" />
+              Add income
+            </Button>
+          </FlexBox>
+        </StyledHeaderWrapper>
+        <DataTable columns={incomeColumnsWithAction} data={income} error={error} isLoading={isLoading} />
       </StyledPaper>
     </section>
   )

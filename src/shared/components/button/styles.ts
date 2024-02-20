@@ -37,6 +37,7 @@ export const StyledButton = styled.button<ButtonProps>`
   display: inline-flex;
   ${font.size(16)}
   justify-content: center;
+  gap: 0.4rem;
   align-items: center;
   transition:
     background-color 0.3s ease,

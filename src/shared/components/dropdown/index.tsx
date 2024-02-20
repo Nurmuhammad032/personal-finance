@@ -76,10 +76,14 @@ const DropdownContent = ({ children }: Props) => {
 
 const DropdownMenuItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
   ({ children, ...props }, ref) => {
+    const { setIsOpen } = useContext(DropdownContext)
+
     return (
-      <StyledDropdownMenuItem ref={ref} {...props}>
-        {children}
-      </StyledDropdownMenuItem>
+      <div onClick={() => setIsOpen(false)}>
+        <StyledDropdownMenuItem ref={ref} {...props}>
+          {children}
+        </StyledDropdownMenuItem>
+      </div>
     )
   }
 )

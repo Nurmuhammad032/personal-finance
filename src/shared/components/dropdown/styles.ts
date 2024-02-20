@@ -37,6 +37,7 @@ const StyledDropdownMenu = styled.div<{ $isOpen: boolean }>`
   left: 0;
   border: 1px solid ${({ theme }) => theme.border};
   border-radius: 7px;
+  z-index: 10;
   background-color: ${({ theme }) => theme.cardBackground};
   width: 13rem;
   padding: 0.3rem;

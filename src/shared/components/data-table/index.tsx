@@ -49,7 +49,7 @@ export function DataTable<TData, TValue>({ columns, data, isLoading, error }: Da
           <TableRow key={headerGroup.id}>
             {headerGroup.headers.map(header => {
               return (
-                <TableHead key={header.id} className="bg-background text-muted-foreground">
+                <TableHead key={header.id}>
                   {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
                 </TableHead>
               )
@@ -59,13 +59,13 @@ export function DataTable<TData, TValue>({ columns, data, isLoading, error }: Da
       </TableHeader>
       <TableBody>
         {isLoading ? (
-          new Array(8).fill(undefined).map((_, i) => (
-            <TableRow key={i} className="text-base font-semibold">
+          new Array(4).fill(undefined).map((_, i) => (
+            <TableRow key={i}>
               {columns.map((_, i) => (
                 <TableCell key={i}>
                   <Skeleton
-                    height={5}
-                    borderRadius={12}
+                    height={15}
+                    borderRadius={1}
                     style={{
                       width: Math.floor(Math.random() * (150 - 80 + 1)) + 80 + 'px'
                     }}
@@ -76,13 +76,11 @@ export function DataTable<TData, TValue>({ columns, data, isLoading, error }: Da
           ))
         ) : error ? (
           <TableRow>
-            <TableCell colSpan={columns.length} className="h-24 text-center text-destructive">
-              {error.message}
-            </TableCell>
+            <TableCell colSpan={columns.length}>{error.message}</TableCell>
           </TableRow>
         ) : table.getRowModel().rows?.length ? (
           table.getRowModel().rows.map(row => (
-            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'} className="text-base font-semibold">
+            <TableRow key={row.id} data-state={row.getIsSelected() && 'selected'}>
               {row.getVisibleCells().map(cell => (
                 <TableCell key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</TableCell>
               ))}
@@ -90,7 +88,14 @@ export function DataTable<TData, TValue>({ columns, data, isLoading, error }: Da
           ))
         ) : (
           <TableRow>
-            <TableCell colSpan={columns.length} className="h-24 text-center">
+            <TableCell
+              colSpan={columns.length}
+              className="h-24 text-center"
+              style={{
+                height: '5rem',
+                textAlign: 'center'
+              }}
+            >
               No results.
             </TableCell>
           </TableRow>

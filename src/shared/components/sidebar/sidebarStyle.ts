@@ -2,7 +2,7 @@ import { device } from '@/app/theme/media'
 import { color, font, mixin, sizes } from '@/shared/utils/styles'
 import styled, { css } from 'styled-components'
 
-export const Sidebar = styled.div<{ $isOpen: boolean }>`
+export const StyledSidebar = styled.div<{ $isOpen: boolean }>`
   position: fixed;
   left: 0;
   top: 0;

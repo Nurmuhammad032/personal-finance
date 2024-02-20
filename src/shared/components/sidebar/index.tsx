@@ -13,7 +13,7 @@ import {
   LogoText,
   ProjectDescription,
   ProjectInfo,
-  Sidebar
+  StyledSidebar
 } from './sidebarStyle'
 
 // ** Router Imports
@@ -24,13 +24,13 @@ import { useTheme } from '@/app/theme/hooks/useTheme'
 import Button from '../button'
 import { useToggle } from '@/shared/hooks/useToggle'
 
-const ProjectSidebar = () => {
+const Sidebar = () => {
   // ** Hooks
   const { setTheme } = useTheme()
   const [isOpen, toggle] = useToggle(false)
 
   return (
-    <Sidebar $isOpen={isOpen}>
+    <StyledSidebar $isOpen={isOpen}>
       <CloseIconWrapper onClick={toggle}>
         {isOpen ? (
           <Icon icon="tabler:chevron-left" />
@@ -78,7 +78,7 @@ const ProjectSidebar = () => {
           </Button>
         </div>
       </div>
-    </Sidebar>
+    </StyledSidebar>
   )
 }
-export default ProjectSidebar
+export default Sidebar
