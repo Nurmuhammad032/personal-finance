@@ -1,25 +1,23 @@
 {
-  "income": [
+  "balance": {
+    "money": 700,
+    "currency": "USD"
+  },
+  "income": [],
+  "outcome": [
     {
-      "source": "Endi to'g'rilandi",
-      "amount": 2000,
-      "date": "2024-02-20",
-      "notes": "notesmas endi rosa ko'p bo'lishi kerak kerak\nnotesmas endi rosa ko'p bo'lishi kerak kerak\nnotesmas endi rosa ko'p bo'lishi kerak kerak\nnotesmas endi rosa ko'p bo'lishi kerak kerak",
-      "id": "6f8e"
-    },
+      "id": "3143",
+      "category": "food",
+      "amount": 700,
+      "date": "2024-02-21",
+      "notes": "Some food"
+    }
+  ],
+  "categories-income": [],
+  "categories-outcome": [
     {
-      "source": "source emas",
-      "amount": 200,
-      "date": "2024-02-20",
-      "notes": "nes",
-      "id": "2883"
-    },
-    {
-      "id": "6063",
-      "source": "source",
-      "amount": 200,
-      "date": "2024-02-20",
-      "notes": "nes"
+      "id": "7379",
+      "name": "Food"
     }
   ]
 }

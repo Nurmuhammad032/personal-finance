@@ -19,14 +19,10 @@ import {
 // ** Router Imports
 import { NavLink, Link } from 'react-router-dom'
 
-// ** Theme hook Import
-import { useTheme } from '@/app/theme/hooks/useTheme'
-import Button from '../button'
 import { useToggle } from '@/shared/hooks/useToggle'
 
 const Sidebar = () => {
-  // ** Hooks
-  const { setTheme } = useTheme()
+  // ** Hook
   const [isOpen, toggle] = useToggle(false)
 
   return (
@@ -58,25 +54,6 @@ const Sidebar = () => {
             <LinkText>{label}</LinkText>
           </LinkItem>
         ))}
-        <div style={{ marginTop: '2rem' }}>
-          <Button
-            $variant="ghost"
-            onClick={() => {
-              setTheme('light')
-              console.log('first')
-            }}
-          >
-            Light
-          </Button>
-          <Button
-            $variant="outline"
-            onClick={() => {
-              setTheme('dark')
-            }}
-          >
-            Dark
-          </Button>
-        </div>
       </div>
     </StyledSidebar>
   )

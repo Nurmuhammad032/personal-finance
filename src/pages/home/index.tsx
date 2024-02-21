@@ -1,11 +1,5 @@
-import Demos from './demos'
-
 const Home = () => {
-  return (
-    <div>
-      <Demos />
-    </div>
-  )
+  return <div></div>
 }
 
 export default Home

@@ -1,8 +1,8 @@
 type NavLink = {
-  label: string;
-  path: string;
-  icon: string;
-};
+  label: string
+  path: string
+  icon: string
+}
 
 export const navLinks: NavLink[] = [
   {
@@ -19,5 +19,10 @@ export const navLinks: NavLink[] = [
     label: 'Outcome',
     path: '/outcome',
     icon: 'streamline:graph-bar-decrease'
+  },
+  {
+    label: 'Settings',
+    path: '/settings',
+    icon: 'solar:settings-outline'
   }
-];
+]

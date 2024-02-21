@@ -1,5 +1,5 @@
 // ** React Imports
-import { useEffect, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 // ** Router Imports
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
@@ -16,7 +16,7 @@ import Textarea from '@/shared/components/textarea'
 import Button from '@/shared/components/button'
 
 // ** Styled Component Imports
-import { StyledFormWrapper } from './styles'
+import { ButtonWrapper, StyledFormWrapper } from './styles'
 
 // ** Form Items Imports
 import { RecordSchema, incomeRecordSchema } from './form-schema'
@@ -34,7 +34,11 @@ import {
 
 // ** Query & Mutation Imports
 import { useCreateIncome, useUpdateIncome } from '@/app/requests/mutations/income-mutations'
-import { useIncomeSingle } from '@/app/requests/queries/income-queries'
+import { useIncomeCategory, useIncomeSingle } from '@/app/requests/queries/income-queries'
+import SingleSelect from '@/shared/components/select/single-select'
+import Modal from '@/shared/components/modal'
+import IncomeCategoryForm from '@/shared/components/category-form/income-category-form'
+import { StyledLinkButton } from '@/shared/components/link-button'
 
 const initialForm = {
   amount: 0,
@@ -47,7 +51,18 @@ const IncomeForm = () => {
   // Navigation
   const navigate = useNavigate()
   const { pathname } = useLocation()
-  console.log(pathname)
+
+  const { data: incomeCategories } = useIncomeCategory()
+
+  const [isOpenModal, setIsOpenModal] = useState(false)
+
+  const handleOpenModal = () => {
+    setIsOpenModal(true)
+  }
+
+  const handleCloseModal = () => {
+    setIsOpenModal(false)
+  }
 
   const currentPathname = useMemo(() => {
     return getLastWordAfterSlashes(pathname)
@@ -77,15 +92,30 @@ const IncomeForm = () => {
     }
   }, [data])
 
+  const handleReset = () => {
+    form.reset(initialForm)
+    navigate(-1)
+  }
+
   async function onSubmit(incomeData: RecordSchema) {
     if (data && id) {
       await updateIncome({ id, data: incomeData })
     } else {
       await createIncome(incomeData)
     }
-    form.reset(initialForm)
-    navigate(-1)
+    handleReset()
   }
+
+  const options = useMemo(() => {
+    if (incomeCategories?.length) {
+      return incomeCategories?.map(({ name }) => ({
+        value: name.toLowerCase(),
+        label: name
+      }))
+    } else {
+      return []
+    }
+  }, [incomeCategories])
 
   return (
     <section>
@@ -105,15 +135,21 @@ const IncomeForm = () => {
                   <FormField
                     control={form.control}
                     name="source"
-                    render={({ field }) => (
+                    render={({ field: { onChange, value } }) => (
                       <FormItem>
                         <FormLabel>Income source</FormLabel>
                         <FormControl>
-                          <Input disabled={isViewPage()} placeholder="Source" {...field} />
+                          <SingleSelect
+                            value={options.find(option => option.value === value)}
+                            options={options}
+                            onChange={e => onChange(e!.value)}
+                            placeholder="Source"
+                          />
                         </FormControl>
                         {!isViewPage() && (
                           <FormDescription>
-                            Please enter the source of your income (e.g., Salary, Freelance Work, Dividends).
+                            Please enter the source of your income (e.g., Salary, Freelance Work, Dividends). <br />
+                            <StyledLinkButton onClick={handleOpenModal}>Add a new source category</StyledLinkButton>
                           </FormDescription>
                         )}
                         <FormMessage />
@@ -165,9 +201,14 @@ const IncomeForm = () => {
                   {isViewPage() ? (
                     <Button onClick={() => navigate('/income')}>Back</Button>
                   ) : (
-                    <Button $fullWidth type="submit" isLoading={isPending || isUpdating}>
-                      Submit
-                    </Button>
+                    <ButtonWrapper>
+                      <Button $fullWidth $variant="outline" onClick={() => handleReset()}>
+                        Cancel
+                      </Button>
+                      <Button $fullWidth type="submit" isLoading={isPending || isUpdating}>
+                        Submit
+                      </Button>
+                    </ButtonWrapper>
                   )}
                 </FlexBox>
               </form>
@@ -175,6 +216,13 @@ const IncomeForm = () => {
           </div>
         </StyledFormWrapper>
       </StyledPaper>
+      <Modal
+        isOpen={isOpenModal}
+        onClose={handleCloseModal}
+        renderContent={() => {
+          return <IncomeCategoryForm mode="create" close={handleCloseModal} />
+        }}
+      />
     </section>
   )
 }

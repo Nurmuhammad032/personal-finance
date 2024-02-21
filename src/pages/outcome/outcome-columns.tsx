@@ -1,12 +1,12 @@
-import { Income } from '@/app/requests/types/income'
+import { Outcome } from '@/app/requests/types/outcome'
 import { formatDate } from '@/shared/utils/formatDate'
 import { truncateAfterWords } from '@/shared/utils/truncate'
 import { ColumnDef } from '@tanstack/react-table'
 
-export const incomeColumns: ColumnDef<Income>[] = [
+export const outcomeColumns: ColumnDef<Outcome>[] = [
   {
-    accessorKey: 'source',
-    header: 'Source'
+    accessorKey: 'category',
+    header: 'Category'
   },
   {
     accessorKey: 'amount',
