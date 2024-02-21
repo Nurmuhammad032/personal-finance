@@ -51,8 +51,6 @@ const CategoryManagement: React.FC<CategoryManagementProps> = ({
     return <Skeleton count={3} />
   }
 
-  console.log(data)
-
   return (
     <div>
       <StyledTitle>{title}</StyledTitle>

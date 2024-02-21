@@ -98,6 +98,7 @@ const IncomeForm = () => {
   }
 
   async function onSubmit(incomeData: RecordSchema) {
+    console.log('working')
     if (data && id) {
       await updateIncome({ id, data: incomeData })
     } else {
@@ -203,7 +204,15 @@ const IncomeForm = () => {
                     <Button onClick={() => navigate('/income')}>Back</Button>
                   ) : (
                     <ButtonWrapper>
-                      <Button $fullWidth $variant="outline" onClick={() => handleReset()}>
+                      <Button
+                        $fullWidth
+                        $variant="outline"
+                        type="button"
+                        onClick={() => {
+                          handleReset()
+                          console.log('first')
+                        }}
+                      >
                         Cancel
                       </Button>
                       <Button $fullWidth type="submit" isLoading={isPending || isUpdating}>

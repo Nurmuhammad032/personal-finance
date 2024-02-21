@@ -215,7 +215,7 @@ const IncomeForm = () => {
                     <Button onClick={() => navigate('/income')}>Back</Button>
                   ) : (
                     <ButtonWrapper>
-                      <Button $fullWidth $variant="outline" onClick={() => handleReset()}>
+                      <Button $fullWidth $variant="outline" type="button" onClick={() => handleReset()}>
                         Cancel
                       </Button>
                       <Button $fullWidth type="submit" isLoading={isPending || isUpdating}>

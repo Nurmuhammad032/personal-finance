@@ -10,8 +10,6 @@ const OutcomeCategories = () => {
     await deleteOutcomeCategory(id)
   }
 
-  console.log(outcomeCategories)
-
   return (
     <CategoryManagement
       title="Outcome Categories"
