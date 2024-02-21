@@ -215,7 +215,12 @@ const IncomeForm = () => {
                       >
                         Cancel
                       </Button>
-                      <Button $fullWidth type="submit" isLoading={isPending || isUpdating}>
+                      <Button
+                        $fullWidth
+                        type="submit"
+                        isLoading={isPending || isUpdating}
+                        disabled={isPending || isUpdating}
+                      >
                         Submit
                       </Button>
                     </ButtonWrapper>

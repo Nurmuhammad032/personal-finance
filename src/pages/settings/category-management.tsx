@@ -47,24 +47,22 @@ const CategoryManagement: React.FC<CategoryManagementProps> = ({
     setEditModalId('')
   }
 
-  if (isLoading) {
-    return <Skeleton count={3} />
-  }
-
   return (
     <div>
       <StyledTitle>{title}</StyledTitle>
       <FlexBox $gap="1rem" $flexWrap="wrap" $margin="0.8rem 0 0">
-        {Array.isArray(data) &&
-          data?.map(({ name, id }) => (
-            <StyledCategoryCard key={id}>
-              <StyledCategoryTitle style={{ textAlign: 'center' }}>{name}</StyledCategoryTitle>
-              <FlexBox $alignItems="center" $justifyContent="center" $gap="1rem" $margin="0.8rem 0 0">
-                <Iconify icon="tabler:trash" cursor={'pointer'} onClick={() => onDeleteCategory(id)} />
-                <Iconify icon="tabler:pencil" cursor={'pointer'} onClick={() => handleOpenEditModal(id)} />
-              </FlexBox>
-            </StyledCategoryCard>
-          ))}
+        {isLoading
+          ? new Array(5).fill(undefined).map((_, i) => <Skeleton key={i} width={100} height={85} />)
+          : Array.isArray(data) &&
+            data?.map(({ name, id }) => (
+              <StyledCategoryCard key={id}>
+                <StyledCategoryTitle style={{ textAlign: 'center' }}>{name}</StyledCategoryTitle>
+                <FlexBox $alignItems="center" $justifyContent="center" $gap="1rem" $margin="0.8rem 0 0">
+                  <Iconify icon="tabler:trash" cursor={'pointer'} onClick={() => onDeleteCategory(id)} />
+                  <Iconify icon="tabler:pencil" cursor={'pointer'} onClick={() => handleOpenEditModal(id)} />
+                </FlexBox>
+              </StyledCategoryCard>
+            ))}
         <StyledCategoryCard
           style={{
             cursor: 'pointer'

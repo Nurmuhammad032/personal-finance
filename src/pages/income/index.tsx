@@ -55,11 +55,11 @@ const Income = () => {
                 <Icon icon="tabler:eye" />
                 <span>View</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => deleteIncome(income.id)}>
+              <DropdownMenuItem onClick={() => deleteIncome(`${income.id}`)}>
                 <Icon icon="tabler:trash" />
                 <span>Delete</span>
               </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => naviate(income.id)}>
+              <DropdownMenuItem onClick={() => naviate(`${income.id}`)}>
                 <Icon icon="tabler:pencil" />
                 <span>Edit</span>
               </DropdownMenuItem>

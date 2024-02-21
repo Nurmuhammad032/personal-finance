@@ -12,16 +12,21 @@ import OutcomeForm from '@/pages/outcome-form'
 // ** Styled Component Import
 import { BalanceWrapper, Main } from './styles'
 import { useBalance } from '../requests/queries/balance-query'
+import Skeleton from 'react-loading-skeleton'
 
 const Routes = () => {
-  const { data: balance } = useBalance()
+  const { data: balance, isLoading } = useBalance()
 
   return (
     <Main>
       <BalanceWrapper>
-        <p>
-          {balance?.money} {balance?.currency}
-        </p>
+        {isLoading ? (
+          <Skeleton width={80} height={30} />
+        ) : (
+          <p>
+            {balance?.money} {balance?.currency}
+          </p>
+        )}
       </BalanceWrapper>
       <RouteWrapper>
         <Route path="/" element={<Home />} />
