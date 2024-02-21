@@ -34,7 +34,7 @@ const StyledDropdownContainer = styled.div`
 const StyledDropdownMenu = styled.div<{ $isOpen: boolean }>`
   position: absolute;
   top: calc(100% + 0.5rem);
-  right: 0;
+  right: -25%;
   border: 1px solid ${({ theme }) => theme.border};
   border-radius: 7px;
   z-index: 10;
