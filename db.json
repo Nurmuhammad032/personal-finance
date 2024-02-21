@@ -3,7 +3,15 @@
     "money": 700,
     "currency": "USD"
   },
-  "income": [],
+  "income": [
+    {
+      "id": "3aca",
+      "source": "fad",
+      "amount": 10,
+      "date": "2024-02-21",
+      "notes": "notes"
+    }
+  ],
   "outcome": [
     {
       "id": "3143",
@@ -14,10 +22,5 @@
     }
   ],
   "categories-income": [],
-  "categories-outcome": [
-    {
-      "id": "7379",
-      "name": "Food"
-    }
-  ]
+  "categories-outcome": []
 }
