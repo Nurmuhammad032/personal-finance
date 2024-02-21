@@ -140,6 +140,7 @@ const IncomeForm = () => {
                         <FormLabel>Income source</FormLabel>
                         <FormControl>
                           <SingleSelect
+                            isDisabled={isViewPage()}
                             value={options.find(option => option.value === value)}
                             options={options}
                             onChange={e => onChange(e!.value)}

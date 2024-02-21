@@ -14,7 +14,13 @@ import {
            flexibility, clearer code structure. */
 
 const Table = forwardRef<HTMLTableElement, React.HTMLAttributes<HTMLTableElement>>(({ ...props }, ref) => (
-  <div>
+  <div
+    style={{
+      position: 'relative',
+      width: '100%',
+      overflow: 'auto'
+    }}
+  >
     <StyledTable ref={ref} {...props} />
   </div>
 ))

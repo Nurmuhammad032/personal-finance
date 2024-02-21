@@ -1,5 +1,5 @@
 import { device } from '@/app/theme/media'
-import { color, font, mixin, sizes } from '@/shared/utils/styles'
+import { color, font, mixin, sizes, zIndexValues } from '@/shared/utils/styles'
 import styled, { css } from 'styled-components'
 
 export const StyledSidebar = styled.div<{ $isOpen: boolean }>`
@@ -8,6 +8,7 @@ export const StyledSidebar = styled.div<{ $isOpen: boolean }>`
   top: 0;
   width: ${sizes.sideBarWidth}px;
   padding: 0 16px 24px;
+  z-index: ${zIndexValues.sidebar};
   background-color: ${({ theme }) => theme.cardBackground};
   overflow-x: visible !important;
   ${mixin.customScrollbar()}

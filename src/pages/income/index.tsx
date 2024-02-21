@@ -79,7 +79,7 @@ const Income = () => {
       </div>
       <StyledPaper>
         <StyledHeaderWrapper>
-          <FlexBox $alignItems="center" $justifyContent="space-between">
+          <FlexBox $alignItems="center" $flexWrap="wrap" $gap="1rem" $justifyContent="space-between">
             <div>
               <StyledTitle>Income Records</StyledTitle>
               <StyledSubtitle>View and Manage Your Income</StyledSubtitle>

@@ -4,6 +4,7 @@ import styled from 'styled-components'
 export const StyledTable = styled.table`
   width: 100%;
   caption-side: bottom;
+  overflow-y: visible;
   border: none !important;
   border-collapse: collapse;
   text-indent: 0;
