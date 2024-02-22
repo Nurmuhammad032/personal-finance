@@ -9,7 +9,7 @@ export const StyledLabel = styled.label<{ $isError: boolean }>`
   ${({ $isError }) =>
     $isError &&
     css`
-      color: ${({ theme }) => theme.destructive};
+      color: red;
     `}
 `
 
