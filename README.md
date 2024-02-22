@@ -1,30 +1,36 @@
-# React + TypeScript + Vite
+# Personal Finance Manager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the Personal Finance Manager project! This application helps you manage your personal finances efficiently.
 
-Currently, two official plugins are available:
+## Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+To get started with the project, follow these steps:
 
-## Expanding the ESLint configuration
+1. Clone this repository to your local machine using `git clone <repository-url>`
+2. Navigate to the project directory: `cd personal-finance-manager`
+3. Install dependencies using npm: `npm install`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Usage
 
-- Configure the top-level `parserOptions` property like this:
+After installing the dependencies, you can run the project locally by executing:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+You can run test with the following command:
+
+```bash
+npm run test
+```
+
+## Technologies Used
+
+- **React**: Frontend library for building user interfaces.
+- **TypeScript**: Superset of JavaScript with static typing.
+- **Vite**: Fast frontend tooling for modern web development.
+- **Styled Components**: CSS-in-JS library for styling React components.
+- **React Query**: Library for fetching and caching data in React applications.
+- **Axios**: Promise-based HTTP client for making HTTP requests.
+- **Jest**: Testing framework for JavaScript projects.
+- **React Testing Library**: Testing utilities for React components.
