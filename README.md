@@ -7,7 +7,7 @@ Welcome to the Personal Finance Manager project! This application helps you mana
 To get started with the project, follow these steps:
 
 1. Clone this repository to your local machine using `git clone <repository-url>`
-2. Navigate to the project directory: `cd personal-finance-manager`
+2. Navigate to the project directory: `cd personal-finance`
 3. Install dependencies using npm: `npm install`
 
 ## Usage
