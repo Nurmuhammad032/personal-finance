@@ -6,7 +6,7 @@ import { ButtonProps } from './types'
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ $variant = 'default', children, isLoading = false, $fullWidth = false, ...props }, ref) => {
     return (
-      <StyledButton ref={ref} $variant={$variant} $fullWidth={$fullWidth} {...props}>
+      <StyledButton ref={ref} $variant={$variant} $fullWidth={$fullWidth} disabled={isLoading} {...props}>
         {isLoading && <Spinner />}
         {children}
       </StyledButton>

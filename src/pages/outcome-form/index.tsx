@@ -220,12 +220,7 @@ const IncomeForm = () => {
                       <Button $fullWidth $variant="outline" type="button" onClick={() => handleReset()}>
                         Cancel
                       </Button>
-                      <Button
-                        $fullWidth
-                        type="submit"
-                        isLoading={isPending || isUpdating}
-                        disabled={isPending || isUpdating}
-                      >
+                      <Button $fullWidth type="submit" isLoading={isPending || isUpdating}>
                         Submit
                       </Button>
                     </ButtonWrapper>

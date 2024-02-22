@@ -64,7 +64,7 @@ const CategoryForm: React.FC<CategoryFormProps> = ({
                 </FormItem>
               )}
             />
-            <Button $fullWidth type="submit" isLoading={isLoading} disabled={isLoading}>
+            <Button $fullWidth type="submit" isLoading={isLoading}>
               Submit
             </Button>
           </FlexBox>
