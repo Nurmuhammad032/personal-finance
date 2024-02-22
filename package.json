@@ -10,6 +10,7 @@
     "preview": "vite preview",
     "start:db": "npx json-server -w db.json",
     "test": "jest",
+    "coverage": "jest --coverage --watchAll --collectCoverageFrom='src/shared/components/**/*.{ts,tsx}' --collectCoverageFrom='!src/shared/components/**/*.{spec,test,types,stories,styles}.{ts,tsx}'",
     "prepare": "husky"
   },
   "dependencies": {
@@ -56,6 +57,7 @@
     "eslint-plugin-react-refresh": "^0.4.5",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
+    "jest-styled-components": "^7.2.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "typescript": "^5.2.2",
