@@ -48,7 +48,7 @@ const initialForm = {
 }
 
 const IncomeForm = () => {
-  // Navigation
+  // ** Navigation
   const navigate = useNavigate()
   const { pathname } = useLocation()
 

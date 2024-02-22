@@ -84,10 +84,12 @@ const IncomeForm = () => {
     defaultValues: initialForm
   })
 
+  // ** Mutations
   const { mutateAsync: createIncome, isPending } = useCreateOutcome()
   const { mutateAsync: updateIncome, isPending: isUpdating } = useUpdateOutcome()
-  const { data: balance } = useBalance()
 
+  // ** Queries
+  const { data: balance } = useBalance()
   const { data } = useOutcomeSingle(id)
 
   useEffect(() => {

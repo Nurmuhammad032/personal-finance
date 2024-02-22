@@ -1,5 +1,8 @@
+// ** React Imports
+import { useEffect, useState } from 'react'
+
+// ** Custom Component Imports
 import Breadcrumbs from '@/shared/components/breadcrumbs'
-import { ModeToggleWrapper, StyledContainer } from './styles'
 import { StyledHeaderWrapper } from '@/shared/components/header-wrapper'
 import { StyledSectionHeading } from '@/shared/components/typography/section-heading'
 import { StyledPaper } from '@/shared/components/paper'
@@ -8,26 +11,35 @@ import OutcomeCategories from './outcome-categories'
 import { FlexBox } from '@/shared/components/flex-box'
 import { StyledTitle } from '@/shared/components/typography/title'
 import SingleSelect from '@/shared/components/select/single-select'
-import { useEffect, useState } from 'react'
+
+// ** Theme Import
 import { useTheme } from '@/app/theme/hooks/useTheme'
 
-const Settings = () => {
-  const { theme, setTheme } = useTheme()
-  const options = [
-    {
-      value: 'dark',
-      label: 'Dark Mode'
-    },
-    {
-      value: 'light',
-      label: 'Light Mode'
-    }
-  ]
+// ** Styled Component Imports
+import { ModeToggleWrapper, StyledContainer } from './styles'
 
+// ** Theme Options
+const options = [
+  {
+    value: 'dark',
+    label: 'Dark Mode'
+  },
+  {
+    value: 'light',
+    label: 'Light Mode'
+  }
+]
+
+const Settings = () => {
+  // ** Theme hook
+  const { theme, setTheme } = useTheme()
+
+  // ** State for keep current theme mode
   const [selectedMode, setSelectedMode] = useState(() => {
     return options.find(option => option.value === theme)
   })
 
+  // ** Changing theme mode
   useEffect(() => {
     if (selectedMode?.value) {
       setTheme(selectedMode.value as typeof theme)
