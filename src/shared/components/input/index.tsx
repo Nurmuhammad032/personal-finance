@@ -15,7 +15,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ type, icon, ...props }
   if (icon) {
     return (
       <InputWrapper>
-        <IconWrapper>
+        <IconWrapper data-testid="icon-wrapper">
           <Icon icon={icon} />
         </IconWrapper>
         <StyledInput $isIcon type={type} ref={ref} {...props} />

@@ -19,15 +19,11 @@ interface CategoryFormProps {
   category: 'income' | 'outcome'
 }
 
-const CategoryForm: React.FC<CategoryFormProps> = ({
-  mode,
-  close,
-  id,
-  onSubmit,
-  category,
-  isLoading,
-  categoryData
-}) => {
+const CategoryForm: React.FC<CategoryFormProps> = props => {
+  // ** Props
+  const { mode, close, id, onSubmit, category, isLoading, categoryData } = props
+
+  // ** Form
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
     defaultValues: { name: '' }
