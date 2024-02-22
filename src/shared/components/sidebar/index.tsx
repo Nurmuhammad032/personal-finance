@@ -49,7 +49,7 @@ const Sidebar = () => {
       </ProjectInfo>
       <div>
         {navLinks.map(({ label, path, icon }) => (
-          <LinkItem as={NavLink} key={path} to={path} onClick={toggle}>
+          <LinkItem as={NavLink} key={path} to={path} onClick={toggle} data-testid="nav-link">
             <Icon icon={icon} fontSize="1.2rem" data-testid={`icon-${label}`} />
             <LinkText>{label}</LinkText>
           </LinkItem>
